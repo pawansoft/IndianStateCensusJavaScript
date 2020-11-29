@@ -5,7 +5,7 @@ function shortByState(fileLocation){
         csvToJsonConverter(fileLocation)
         .then(data => {
             data.sort((obj1, obj2) => {
-                obj1.State.localeCompare(obj2.State)
+                obj2.State.localeCompare(obj1.State);
                 resolve(data)
         });
     });
