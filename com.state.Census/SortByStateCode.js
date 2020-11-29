@@ -1,15 +1,15 @@
-const csvToJsonConverter = require('../com.state.Census/CsvToJsonHelper')
+const csvToJsonConverter = require('./CsvToJsonHelper')
 
-function shortByState(fileLocation){
+function shortByStateCode(fileLocation){
     return new Promise((resolve, rejects) => {
         csvToJsonConverter(fileLocation)
         .then(data => {
             data.sort((obj1, obj2) => {
-                obj2.State.localeCompare(obj1.State);
+                obj1.StateCode.localeCompare(obj2.StateCode);
                 resolve(data)
         });
     });
 })
 }
 
-module.exports = shortByState;
+module.exports = shortByStateCode;
