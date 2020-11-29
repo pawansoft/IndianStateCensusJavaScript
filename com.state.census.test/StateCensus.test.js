@@ -2,6 +2,7 @@ const { test, expect, describe } = require("@jest/globals")
 const loadStateCensusData = require('../com.state.Census/LoadStateCensusDetail')
 const shrotByState = require('../com.state.Census/ShortByState')
 const shortByStateCode = require ('../com.state.Census/SortByStateCode')
+const shortByPopulation = require('../com.state.Census/shortByPopulation')
 
 const indianStateCensus = '/home/pawan/Desktop/PlayGround/IndiaStateCensusData .csv'
 const indeanStateCode1 = '/home/pawan/Desktop/PlayGround/IndiaStateCensusData1 .csv'
@@ -37,6 +38,12 @@ const wrongDelimeter = '/home/pawan/Desktop/PlayGround/stateCensus.csv'
             return shortByStateCode(indeanStateCode).then(data =>{
                 expect(data[0].StateCode).toBe('AN')
                 expect(data[36].StateCode).toBe('KL')
+            })
+        })
+        test('ProvideCSVFileLocation_WhenDataIsShortedByPopulation_TestShouldPass ', () =>{
+            return shortByPopulation(indianStateCensus).then(data =>{
+                expect(data[0].State).toBe('Uttar Pradesh')
+                expect(data[28].State).toBe('Assam')
             })
         })
     })
