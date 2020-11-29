@@ -3,6 +3,7 @@ const loadStateCensusData = require('../com.state.Census/LoadStateCensusDetail')
 const shrotByState = require('../com.state.Census/ShortByState')
 const shortByStateCode = require ('../com.state.Census/SortByStateCode')
 const shortByPopulation = require('../com.state.Census/shortByPopulation')
+const shortByPopulationDensity = require ('../com.state.Census/shortByPopulationDensity')
 
 const indianStateCensus = '/home/pawan/Desktop/PlayGround/IndiaStateCensusData .csv'
 const indeanStateCode1 = '/home/pawan/Desktop/PlayGround/IndiaStateCensusData1 .csv'
@@ -42,8 +43,14 @@ const wrongDelimeter = '/home/pawan/Desktop/PlayGround/stateCensus.csv'
         })
         test('ProvideCSVFileLocation_WhenDataIsShortedByPopulation_TestShouldPass ', () =>{
             return shortByPopulation(indianStateCensus).then(data =>{
-                expect(data[0].State).toBe('Uttar Pradesh')
-                expect(data[28].State).toBe('Assam')
+                expect(data[0].State).toBe('West Bengal')
+                expect(data[28].State).toBe('Mizoram')
+            })
+        })
+        test('ProvideCSVFileLocation_WhenDataIsShortedByPopulationDensity_TestShouldPass ', () =>{
+            return shortByPopulationDensity(indianStateCensus).then(data =>{
+                expect(data[0].State).toBe('Bihar')
+                expect(data[28].State).toBe('Arunachal Pradesh')
             })
         })
     })
