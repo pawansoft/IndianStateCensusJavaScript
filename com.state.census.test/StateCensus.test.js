@@ -1,6 +1,6 @@
-const { test, expect } = require("@jest/globals")
-const { describe } = require("yargs")
+const { test, expect, describe } = require("@jest/globals")
 const loadStateCensusData = require('../com.state.Census/LoadStateCensusDetail')
+const shrotByState = require('../com.state.Census/ShortingMethod')
 
 const indianStateCensus = '/home/pawan/Desktop/PlayGround/IndiaStateCensusData .csv'
 const indeanStateCode1 = '/home/pawan/Desktop/PlayGround/IndiaStateCensusData1 .csv'
@@ -24,5 +24,16 @@ const wrongDelimeter = '/home/pawan/Desktop/PlayGround/stateCensus.csv'
         const exception = loadStateCensusData(indeanStateCode);
         return expect(exception).rejects.toThrow('Invalid Header Exception')
     })
+
+    describe('TestingShortedData', () => {
+        test('ProvideJsonFinle_WhenDataStoredInSorted_TestShouldPass', () =>{
+            return shrotByState(indianStateCensus).then(data => {
+                expect(data[0].State).toBe('Uttar Pradesh');
+                expect(data[28].State).toBe('Assam');
+            })
+        })
+    })
+
+
 
 
