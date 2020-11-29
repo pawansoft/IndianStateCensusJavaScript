@@ -2,11 +2,11 @@ const { test, expect } = require("@jest/globals")
 const { describe } = require("yargs")
 const loadStateCodeData = require('../com.state.Census/LoadStateCode')
 
-const indianStateCensus = '/home/pawan/Desktop/PlayGround/IndiaStateCensusData .csv'
-const indeanStateCode1 = '/home/pawan/Desktop/PlayGround/IndiaStateCensusData1 .csv'
-const indeanStateCode = '/home/pawan/Desktop/PlayGround/IndiaStateCode .csv'
-const indianStateCensusText = '/home/pawan/Desktop/PlayGround/IndiaStateCensusData.txt'
-const wrongDelimeter = '/home/pawan/Desktop/PlayGround/stateCensus.csv'
+const indianStateCensus = '/home/pawan/Documents/javaScript/StateCensusAnalyser/Resource/IndiaStateCensusData .csv'
+const indeanStateCode1 = '/home/pawan/Documents/javaScript/StateCensusAnalyser/Resource/IndiaStateCensusData1 .csv'
+const indeanStateCode = '/home/pawan/Documents/javaScript/StateCensusAnalyser/Resource/IndiaStateCode .csv'
+const indianStateCensusText = '/home/pawan/Documents/javaScript/StateCensusAnalyser/Resource/IndiaStateCensusData.txt'
+const wrongDelimeter = '/home/pawan/Documents/javaScript/StateCensusAnalyser/Resource/stateCensus.csv'
 
     test('providefilelocation_whenNumberOfRecodeMatch_TestShouldPass', () =>{
         const numberOfRecord = loadStateCodeData(indeanStateCode);

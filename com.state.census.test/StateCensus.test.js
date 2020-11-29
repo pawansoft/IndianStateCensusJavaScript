@@ -4,13 +4,15 @@ const shrotByState = require('../com.state.Census/ShortByState')
 const shortByStateCode = require ('../com.state.Census/SortByStateCode')
 const shortByPopulation = require('../com.state.Census/shortByPopulation')
 const shortByPopulationDensity = require ('../com.state.Census/shortByPopulationDensity')
+const shortByArea = require('../com.state.Census/shortByArea')
 
-const indianStateCensus = '/home/pawan/Desktop/PlayGround/IndiaStateCensusData .csv'
-const indeanStateCode1 = '/home/pawan/Desktop/PlayGround/IndiaStateCensusData1 .csv'
-const indeanStateCode = '/home/pawan/Desktop/PlayGround/IndiaStateCode .csv'
-const indianStateCensusText = '/home/pawan/Desktop/PlayGround/IndiaStateCensusData.txt'
-const wrongDelimeter = '/home/pawan/Desktop/PlayGround/stateCensus.csv'
+const indianStateCensus = '/home/pawan/Documents/javaScript/StateCensusAnalyser/Resource/IndiaStateCensusData .csv'
+const indeanStateCode1 = '/home/pawan/Documents/javaScript/StateCensusAnalyser/Resource/IndiaStateCensusData1 .csv'
+const indeanStateCode = '/home/pawan/Documents/javaScript/StateCensusAnalyser/Resource/IndiaStateCode .csv'
+const indianStateCensusText = '/home/pawan/Documents/javaScript/StateCensusAnalyser/Resource/IndiaStateCensusData.txt'
+const wrongDelimeter = '/home/pawan/Documents/javaScript/StateCensusAnalyser/Resource/stateCensus.csv'
 
+describe('csvReaderAndExceptions', () =>{
     test('providefilelocation_whenNumberOfRecodeMatch_TestShouldPass', () =>{
         const numberOfRecord = loadStateCensusData(indianStateCensus);
         return expect(numberOfRecord).resolves.toBe(29); 
@@ -27,6 +29,8 @@ const wrongDelimeter = '/home/pawan/Desktop/PlayGround/stateCensus.csv'
         const exception = loadStateCensusData(indeanStateCode);
         return expect(exception).rejects.toThrow('Invalid Header Exception')
     })
+
+})
 
     describe('TestingShortedData', () => {
         test('ProvideCSVFileLocation_WhenDataStoredInSorted_TestShouldPass', () =>{
@@ -51,6 +55,12 @@ const wrongDelimeter = '/home/pawan/Desktop/PlayGround/stateCensus.csv'
             return shortByPopulationDensity(indianStateCensus).then(data =>{
                 expect(data[0].State).toBe('Bihar')
                 expect(data[28].State).toBe('Arunachal Pradesh')
+            })
+        })
+        test('ProvideCSVFileLocation_WhenDataIsShortedByArea_TestShouldPass ', () =>{
+            return shortByArea(indianStateCensus).then(data =>{
+                expect(data[0].State).toBe('Madhya Pradesh')
+                expect(data[28].State).toBe('Sikkim')
             })
         })
     })
