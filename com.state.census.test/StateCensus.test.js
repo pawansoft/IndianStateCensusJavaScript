@@ -1,10 +1,6 @@
 const { test, expect, describe } = require("@jest/globals")
 const loadStateCensusData = require('../com.state.Census/LoadStateCensusDetail')
-const shrotByState = require('../com.state.Census/ShortByState')
-const shortByStateCode = require ('../com.state.Census/SortByStateCode')
-const shortByPopulation = require('../com.state.Census/shortByPopulation')
-const shortByPopulationDensity = require ('../com.state.Census/shortByPopulationDensity')
-const shortByArea = require('../com.state.Census/shortByArea')
+const Sort = require("../com.state.Census/Sort")
 
 const indianStateCensus = '/home/pawan/Documents/javaScript/StateCensusAnalyser/Resource/IndiaStateCensusData .csv'
 const indeanStateCode1 = '/home/pawan/Documents/javaScript/StateCensusAnalyser/Resource/IndiaStateCensusData1 .csv'
@@ -33,32 +29,35 @@ describe('csvReaderAndExceptions', () =>{
 })
 
     describe('TestingShortedData', () => {
+
+        const sort = new Sort(); 
+
         test('ProvideCSVFileLocation_WhenDataStoredInSorted_TestShouldPass', () =>{
-            return shrotByState(indianStateCensus).then(data => {
+            return sort.byState (indianStateCensus).then(data => {
                 expect(data[0].State).toBe('Uttar Pradesh');
                 expect(data[28].State).toBe('Assam');
             })
         })
         test('ProvideCSVFileLocation_WhenDataIsShorted_TestShouldPass ', () =>{
-            return shortByStateCode(indeanStateCode).then(data =>{
+            return sort.byStateCode(indeanStateCode).then(data =>{
                 expect(data[0].StateCode).toBe('AN')
                 expect(data[36].StateCode).toBe('KL')
             })
         })
         test('ProvideCSVFileLocation_WhenDataIsShortedByPopulation_TestShouldPass ', () =>{
-            return shortByPopulation(indianStateCensus).then(data =>{
+            return sort.byPopulation (indianStateCensus).then(data =>{
                 expect(data[0].State).toBe('West Bengal')
                 expect(data[28].State).toBe('Mizoram')
             })
         })
         test('ProvideCSVFileLocation_WhenDataIsShortedByPopulationDensity_TestShouldPass ', () =>{
-            return shortByPopulationDensity(indianStateCensus).then(data =>{
+            return sort.byPopulationDensity(indianStateCensus).then(data =>{
                 expect(data[0].State).toBe('Bihar')
                 expect(data[28].State).toBe('Arunachal Pradesh')
             })
         })
         test('ProvideCSVFileLocation_WhenDataIsShortedByArea_TestShouldPass ', () =>{
-            return shortByArea(indianStateCensus).then(data =>{
+            return sort.byArea(indianStateCensus).then(data =>{
                 expect(data[0].State).toBe('Madhya Pradesh')
                 expect(data[28].State).toBe('Sikkim')
             })
